@@ -1,0 +1,155 @@
+{
+  "model_type": "offline dynamic optimization models",
+  "grades": {
+    "GRP-75": {
+      "kW": {
+        "file": "GRP-75_kW.joblib",
+        "r2": 0.4594,
+        "mae": 13.6856,
+        "rows": 6517,
+        "model": "ridge"
+      },
+      "Vacuum_Level": {
+        "file": "GRP-75_Vacuum_Level.joblib",
+        "r2": -0.1612,
+        "mae": 0.3386,
+        "rows": 6517,
+        "model": "ridge"
+      },
+      "Dryness": {
+        "file": "GRP-75_Dryness.joblib",
+        "r2": 0.7756,
+        "mae": 0.1561,
+        "rows": 3247,
+        "model": "hgb"
+      },
+      "Moisture": {
+        "file": "GRP-75_Moisture.joblib",
+        "r2": 0.1598,
+        "mae": 0.2543,
+        "rows": 6456,
+        "model": "ridge"
+      }
+    },
+    "PPC-GL-80": {
+      "kW": {
+        "file": "PPC-GL-80_kW.joblib",
+        "r2": 0.8746,
+        "mae": 27.737,
+        "rows": 4846,
+        "model": "ridge"
+      },
+      "Vacuum_Level": {
+        "file": "PPC-GL-80_Vacuum_Level.joblib",
+        "r2": 0.7572,
+        "mae": 0.728,
+        "rows": 4846,
+        "model": "ridge"
+      },
+      "Dryness": {
+        "file": "PPC-GL-80_Dryness.joblib",
+        "r2": 0.7052,
+        "mae": 0.2532,
+        "rows": 3471,
+        "model": "ridge"
+      },
+      "Moisture": {
+        "file": "PPC-GL-80_Moisture.joblib",
+        "r2": 0.1492,
+        "mae": 0.2276,
+        "rows": 4846,
+        "model": "extra"
+      }
+    },
+    "OSP-BM-PLUS55": {
+      "kW": {
+        "file": "OSP-BM-PLUS55_kW.joblib",
+        "r2": 0.6191,
+        "mae": 16.554,
+        "rows": 4095,
+        "model": "extra"
+      },
+      "Vacuum_Level": {
+        "file": "OSP-BM-PLUS55_Vacuum_Level.joblib",
+        "r2": 0.6661,
+        "mae": 0.3492,
+        "rows": 4095,
+        "model": "extra"
+      },
+      "Dryness": {
+        "file": "OSP-BM-PLUS55_Dryness.joblib",
+        "r2": -1.2394,
+        "mae": 0.2944,
+        "rows": 4095,
+        "model": "ridge"
+      },
+      "Moisture": {
+        "file": "OSP-BM-PLUS55_Moisture.joblib",
+        "r2": -1.1678,
+        "mae": 0.1043,
+        "rows": 4095,
+        "model": "ridge"
+      }
+    },
+    "CPO-HW-50": {
+      "kW": {
+        "file": "CPO-HW-50_kW.joblib",
+        "r2": 0.2382,
+        "mae": 26.5509,
+        "rows": 3797,
+        "model": "extra"
+      },
+      "Vacuum_Level": {
+        "file": "CPO-HW-50_Vacuum_Level.joblib",
+        "r2": 0.287,
+        "mae": 0.2724,
+        "rows": 3797,
+        "model": "ridge"
+      },
+      "Dryness": {
+        "file": "CPO-HW-50_Dryness.joblib",
+        "r2": 0.9696,
+        "mae": 0.1584,
+        "rows": 2623,
+        "model": "ridge"
+      },
+      "Moisture": {
+        "file": "CPO-HW-50_Moisture.joblib",
+        "r2": -6.7658,
+        "mae": 0.085,
+        "rows": 3797,
+        "model": "hgb"
+      }
+    },
+    "OSP-NOTE--50": {
+      "kW": {
+        "file": "OSP-NOTE--50_kW.joblib",
+        "r2": 0.8521,
+        "mae": 14.9275,
+        "rows": 3009,
+        "model": "hgb"
+      },
+      "Vacuum_Level": {
+        "file": "OSP-NOTE--50_Vacuum_Level.joblib",
+        "r2": 0.7349,
+        "mae": 0.2247,
+        "rows": 3009,
+        "model": "extra"
+      },
+      "Dryness": {
+        "file": "OSP-NOTE--50_Dryness.joblib",
+        "r2": 0.8878,
+        "mae": 0.1663,
+        "rows": 1673,
+        "model": "extra"
+      },
+      "Moisture": {
+        "file": "OSP-NOTE--50_Moisture.joblib",
+        "r2": -17.2564,
+        "mae": 0.1138,
+        "rows": 3009,
+        "model": "extra"
+      }
+    }
+  }
+}

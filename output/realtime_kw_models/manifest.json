@@ -1,0 +1,62 @@
+{
+  "features": [
+    "Product Rate",
+    "Basis Weight",
+    "Main steam flow",
+    "Reel Speed",
+    "Jet/Wire Ratio",
+    "Turbo Vacumm level",
+    "Turbo Vacuum Speed Motor",
+    "Turbo Vacuum pressure line Suction Box Set point",
+    "Turbo Vacuum Press Line Pick up High Set point",
+    "Turbo Vacuum Press Line Pick up Low Set point",
+    "Turbo Vacuum Press Line 2nd Press Felt Set point",
+    "Turbo Vacuum Press Line 1st Press Felt Set point",
+    "Turbo Vacuum Press Line 3rd Press Felt Set point",
+    "Turbo Vacuum Press Line Couch Roll Set point"
+  ],
+  "target": "Turbo Vacuum overload power (kW)",
+  "models": {
+    "GRP-75": {
+      "file": "GRP-75_kw_model.joblib",
+      "rows": 6517,
+      "test_rows": 1304,
+      "model": "ridge",
+      "r2": 0.4594,
+      "mae_kw": 13.69
+    },
+    "PPC-GL-80": {
+      "file": "PPC-GL-80_kw_model.joblib",
+      "rows": 4846,
+      "test_rows": 727,
+      "model": "Ridge alpha=100",
+      "r2": 0.9287,
+      "mae_kw": 21.24,
+      "rmse_kw": 29.29
+    },
+    "OSP-BM-PLUS55": {
+      "file": "OSP-BM-PLUS55_kw_model.joblib",
+      "rows": 4095,
+      "test_rows": 819,
+      "model": "extra_trees",
+      "r2": 0.6183,
+      "mae_kw": 16.59
+    },
+    "CPO-HW-50": {
+      "file": "CPO-HW-50_kw_model.joblib",
+      "rows": 3797,
+      "test_rows": 760,
+      "model": "extra_trees",
+      "r2": 0.27,
+      "mae_kw": 26.08
+    },
+    "OSP-NOTE--50": {
+      "file": "OSP-NOTE--50_kw_model.joblib",
+      "rows": 3009,
+      "test_rows": 602,
+      "model": "ridge",
+      "r2": 0.8521,
+      "mae_kw": 14.93
+    }
+  }
+}

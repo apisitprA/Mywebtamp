@@ -1,0 +1,222 @@
+[
+  {
+    "file": ".gitignore",
+    "bytes": 157,
+    "sha256": "99bc5ab93a7fc5aec56501984ba4f73d05d6904f8fd52e599a9b36def7a4aac9"
+  },
+  {
+    "file": "index.html",
+    "bytes": 136456,
+    "sha256": "a109df006906c12ce746ed502fea300d13a6c48df96f6a2f9ad5883726041b56"
+  },
+  {
+    "file": "pi_dashboard_server.py",
+    "bytes": 44985,
+    "sha256": "cc582a069133525d52f830faf1ed0ebfa5f132e48247aa4fdd5a05e59a9203d4"
+  },
+  {
+    "file": "README.md",
+    "bytes": 3966,
+    "sha256": "c6a952e9e626b188b01afa4b7dad4b1b5054f2c43e01206128d8f09ab2d00dc8"
+  },
+  {
+    "file": "requirements.txt",
+    "bytes": 113,
+    "sha256": "65e8d685cda59f9f42ed12aca6d5480cb69143d6e58d420173cdcdd1fb17768a"
+  },
+  {
+    "file": "setup_dashboard.bat",
+    "bytes": 244,
+    "sha256": "eab60b6e5695694b7b0745c305297afd6978ae97de485b7c26e12dbc1c67d43b"
+  },
+  {
+    "file": "start_pi_dashboard.bat",
+    "bytes": 149,
+    "sha256": "b7de256631d8f66af456b5921a24621390efcd4f74d18d4f9b14b9e038245449"
+  },
+  {
+    "file": "start_pi_dashboard_silent.vbs",
+    "bytes": 899,
+    "sha256": "9c0ed5f2f3d144dd290afce765b03aa4f8c2fe9a8c383f547b70584b06ac0727"
+  },
+  {
+    "file": "turbo-performance.js",
+    "bytes": 29827,
+    "sha256": "60f87591b30e33b3b4d54849949cdf032f8925b5e80c98c618ecbfb3bbb0b0b6"
+  },
+  {
+    "file": "output/dynamic_optimization_models/CPO-HW-50_Dryness.joblib",
+    "bytes": 1763,
+    "sha256": "87ff382af45a5060c01fad5f09eff32f1e05be1022dbe7268f0b0c1b7e680436"
+  },
+  {
+    "file": "output/dynamic_optimization_models/CPO-HW-50_kW.joblib",
+    "bytes": 12060058,
+    "sha256": "e1649e6f430449a602621b480c1782a6d8da864eb1f7fa570bd72e29c22df172"
+  },
+  {
+    "file": "output/dynamic_optimization_models/CPO-HW-50_Moisture.joblib",
+    "bytes": 1777,
+    "sha256": "9ebc8307139900fa8a196937b4625413f22bc71c15698166e27f7ef82cf93891"
+  },
+  {
+    "file": "output/dynamic_optimization_models/CPO-HW-50_Vacuum_Level.joblib",
+    "bytes": 1739,
+    "sha256": "030adf7ab194cd44890ff11c6997165488b560d6115ed0b9a7c61ac3f3dec715"
+  },
+  {
+    "file": "output/dynamic_optimization_models/GRP-75_Dryness.joblib",
+    "bytes": 1761,
+    "sha256": "028426269ba9fd9f678719343f51be9afebe63c0ce4820d225914b7e27a6a824"
+  },
+  {
+    "file": "output/dynamic_optimization_models/GRP-75_kW.joblib",
+    "bytes": 1763,
+    "sha256": "aecfbcbd9ac8b3d4f6cf2042231c9077c51969dd8d0ee9c026bc404a0fad74e6"
+  },
+  {
+    "file": "output/dynamic_optimization_models/GRP-75_Moisture.joblib",
+    "bytes": 1763,
+    "sha256": "326a1ce62a1d3ed2c6e62061f95ca47dd4332ee61ad78c7f54f462f5b7cfc211"
+  },
+  {
+    "file": "output/dynamic_optimization_models/GRP-75_Vacuum_Level.joblib",
+    "bytes": 1739,
+    "sha256": "cee9c9e921681420a5dc7bbb87089f4cb826010aed899d10e86cf1ef5c3c9d1a"
+  },
+  {
+    "file": "output/dynamic_optimization_models/manifest.json",
+    "bytes": 3664,
+    "sha256": "f48f155924a9b93f6f6ff2484ece97fe49120ada60da9ea5def996171086edad"
+  },
+  {
+    "file": "output/dynamic_optimization_models/OSP-BM-PLUS55_Dryness.joblib",
+    "bytes": 1779,
+    "sha256": "6f629d3cf5f24cfac863db0969f9db77088259ec5e87f3fef25e0355662ea3bb"
+  },
+  {
+    "file": "output/dynamic_optimization_models/OSP-BM-PLUS55_kW.joblib",
+    "bytes": 12831322,
+    "sha256": "b8442d0e3b4670bd9e3878f9a6c445f31aa07d11a79e52cd302e93e216971bd4"
+  },
+  {
+    "file": "output/dynamic_optimization_models/OSP-BM-PLUS55_Moisture.joblib",
+    "bytes": 1779,
+    "sha256": "b0d304892205709f325a958f2ab74bf424c9bcf3e8bba83eee152f183fc444d8"
+  },
+  {
+    "file": "output/dynamic_optimization_models/OSP-BM-PLUS55_Vacuum_Level.joblib",
+    "bytes": 4686682,
+    "sha256": "5f9ae7854a678e41fbb8178cbd48318cf45568ab3972cbbf04c3fa0d5c139867"
+  },
+  {
+    "file": "output/dynamic_optimization_models/OSP-NOTE--50_Dryness.joblib",
+    "bytes": 5108906,
+    "sha256": "bf02187dff0d769eabb83a5a1948100fba6cb5b1301a9d39cb9c953a18c4dc62"
+  },
+  {
+    "file": "output/dynamic_optimization_models/OSP-NOTE--50_kW.joblib",
+    "bytes": 1761,
+    "sha256": "74c6b4ce476ef1aba33a543c3738ec755b03db86be6445f82a32790aaf1d4c77"
+  },
+  {
+    "file": "output/dynamic_optimization_models/OSP-NOTE--50_Moisture.joblib",
+    "bytes": 9298298,
+    "sha256": "2b8c4187f04bdf46ec1c8d55645f772c087ebd84a330a6c836f29ecdd86c7ebb"
+  },
+  {
+    "file": "output/dynamic_optimization_models/OSP-NOTE--50_Vacuum_Level.joblib",
+    "bytes": 4883962,
+    "sha256": "f815f0ca39d25c635793229614e6cfbe806c34657fd07ca962c7b3ff3f47add4"
+  },
+  {
+    "file": "output/dynamic_optimization_models/PPC-GL-80_Dryness.joblib",
+    "bytes": 1763,
+    "sha256": "a72255211e6e7c663d15ca60278f535d701577d60c55f85bd15275cffdaebe1c"
+  },
+  {
+    "file": "output/dynamic_optimization_models/PPC-GL-80_kW.joblib",
+    "bytes": 1763,
+    "sha256": "79de7403b6fd5250a9693f7316c2d7868b72cc4246f628e9c253fa73c1a7a2ff"
+  },
+  {
+    "file": "output/dynamic_optimization_models/PPC-GL-80_Moisture.joblib",
+    "bytes": 15527882,
+    "sha256": "ee2740224812e22b1a601c7612639c053aa11f9898fa33402fee05e352aac61d"
+  },
+  {
+    "file": "output/dynamic_optimization_models/PPC-GL-80_Vacuum_Level.joblib",
+    "bytes": 1739,
+    "sha256": "8ada91366ccc66ae78776008ea1306f49537e3603d7aeb9408e1952d9b16887c"
+  },
+  {
+    "file": "output/forecast_30s_models/GRP-75_forecast_30s_best_actionable.joblib",
+    "bytes": 5290,
+    "sha256": "1690c079f9bda5f43592f729f033589ef61ee767870a51c0a2b00fc435d7c744"
+  },
+  {
+    "file": "output/forecast_30s_models/manifest.json",
+    "bytes": 1042,
+    "sha256": "8255603b14d1e2fd89e19e8449d7f92dfb39490397f69d1902114aaa97ea003a"
+  },
+  {
+    "file": "output/forecast_30s_models/PPC-GL-80_forecast_30s_best_actionable.joblib",
+    "bytes": 5306,
+    "sha256": "68594912a9142d1fd27266b7e297ce1c5a47d8e10227073858ac603a3bbae553"
+  },
+  {
+    "file": "output/ml_optimization/dryer_condition_ranges.csv",
+    "bytes": 4898,
+    "sha256": "4f8ff871ef297e77e6a4e96dfb22f30274af2e2e665ebc4c3db295f974d937b0"
+  },
+  {
+    "file": "output/ml_optimization/optimization_recommendations.csv",
+    "bytes": 569,
+    "sha256": "a6f1ddeeba9f43bda0ccb21a9a107e56eb9f1c9b345c8ab29927194b140adfc2"
+  },
+  {
+    "file": "output/ml_optimization/top5_integer_optimization_recommendations.csv",
+    "bytes": 630,
+    "sha256": "7c73e48fa91473ca186089b5dadcee8fc2a6111c6a6062f16aceaaae58fb99ff"
+  },
+  {
+    "file": "output/ml_optimization/top5_quality_constrained_conditions.csv",
+    "bytes": 3051,
+    "sha256": "a939ec9a7bcd22aac4eb042b63f7ae0c1f9b35370b985d7cd5916d3a6e84f7f2"
+  },
+  {
+    "file": "output/ml_optimization/top5_robust_optimization_scenarios.csv",
+    "bytes": 976334,
+    "sha256": "6b7375eacbb6818b6f60b7438416c27d45d15a88267436db643680d5929c38d7"
+  },
+  {
+    "file": "output/realtime_kw_models/CPO-HW-50_kw_model.joblib",
+    "bytes": 24507714,
+    "sha256": "2ca75bea80edeb7ddce12bd97c641625dd4c2b5a28ea67d8e91b264134b25858"
+  },
+  {
+    "file": "output/realtime_kw_models/GRP-75_kw_model.joblib",
+    "bytes": 1781,
+    "sha256": "8f9d3abf8cf10db034aa6ed53714f2162e28deb1dc554e677b9b8012673d19d4"
+  },
+  {
+    "file": "output/realtime_kw_models/manifest.json",
+    "bytes": 1641,
+    "sha256": "e0fed41792fea7cecbf90c85dc3aed5939d5a576dc6b33c259e17cfc180ec361"
+  },
+  {
+    "file": "output/realtime_kw_models/OSP-BM-PLUS55_kw_model.joblib",
+    "bytes": 26101090,
+    "sha256": "0491a4c1ac105f8b3abbcf57632fd8bf11a489bb7fcafcb994f9819e17d0df3d"
+  },
+  {
+    "file": "output/realtime_kw_models/OSP-NOTE--50_kw_model.joblib",
+    "bytes": 1781,
+    "sha256": "fe7e331baf1946a387ea8424a8c18fb21f4acd8240b505cb919de00da25734a9"
+  },
+  {
+    "file": "output/realtime_kw_models/PPC-GL-80_kw_model.joblib",
+    "bytes": 4955,
+    "sha256": "d86e6bafa40e37d3903ebc0cd5b75047ba0e2d0a82f1fb0f62e4bcf7db9a9098"
+  }
+]

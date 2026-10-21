@@ -1,0 +1,6 @@
+﻿grade,Suction Box SP,Pick up High SP,Pick up Low SP,1st Press Felt SP,2nd Press Felt SP,3rd Press Felt SP,Couch Roll SP,predicted_kW,reference_kW,estimated_saving_kW,vacuum_level_min_kPa,vacuum_level_recommended_kPa,vacuum_level_max_kPa,scenario_count
+OSP-BM-PLUS55,-14,-43,-40,-38,-37,-38,-38,548.6,554.9,6.3,-50,-50,-50,69
+CPO-HW-50,-13,-41,-41,-39,-37,-40,-37,514.57,543.02,28.45,-49,-48,-48,1255
+OSP-NOTE--50,-14,-45,-42,-39,-38,-39,-37,497.69,520.19,22.5,-49,-48,-48,80
+GRP-75,-12,-42,-39,-37,-38,-37,-39,426.363,427.901,1.538,-48,-48,-48,30
+PPC-GL-80,-12,-42,-40,-38,-40,-39,-38,406.473,409.76,3.287,-45,-45,-45,30

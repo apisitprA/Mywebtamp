@@ -1,0 +1,10 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.log
+output/pi_current_cache.json
+output/forecast_30s_models/retraining_status.json

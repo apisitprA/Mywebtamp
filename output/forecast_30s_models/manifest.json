@@ -1,0 +1,34 @@
+{
+  "forecast_horizon_seconds": 30,
+  "feature_source": "PI current values plus 30-second kW history",
+  "trained_at": "2026-09-29T15:08:38",
+  "selection_method": "3-window rolling chronological validation; final 20% unseen future test",
+  "models": {
+    "GRP-75": {
+      "model": "Ridge 30s Actionable",
+      "rows": 64606,
+      "test_rows": 12922,
+      "r2": 0.9616,
+      "mae_kw": 4.23,
+      "rmse_kw": 5.57,
+      "unseen_future_r2": 0.9783,
+      "unseen_future_mae_kw": 2.56,
+      "rolling_r2_min": 0.876,
+      "file": "GRP-75_forecast_30s_best_actionable.joblib",
+      "actionable_optimization": true
+    },
+    "PPC-GL-80": {
+      "model": "Ridge 30s Actionable",
+      "rows": 48099,
+      "test_rows": 9620,
+      "r2": 0.9291,
+      "mae_kw": 3.98,
+      "rmse_kw": 6.69,
+      "unseen_future_r2": 0.9975,
+      "unseen_future_mae_kw": 3.59,
+      "rolling_r2_min": 0.8639,
+      "file": "PPC-GL-80_forecast_30s_best_actionable.joblib",
+      "actionable_optimization": true
+    }
+  }
+}

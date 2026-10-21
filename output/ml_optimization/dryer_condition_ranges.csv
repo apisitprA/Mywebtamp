@@ -1,0 +1,51 @@
+grade,parameter,min,median,max,rows,constraint_type
+GRP-75,Dryer steam pressure cylinder1,25.258,29.947,60.371,6517,dryer operating condition
+GRP-75,Dryer steam pressure cylinder3,24.347,32.533,35.117,6517,dryer operating condition
+GRP-75,Dryer steam pressure cylinder5,40.103,44.173,45.58,6517,dryer operating condition
+GRP-75,Dryer steam pressure cylinder6,57.128,60.255,65.594,6517,dryer operating condition
+GRP-75,Dryer steam pressure group2,97.88,103.862,110.172,6517,dryer operating condition
+GRP-75,Pre-Dryer (Dryer steam pressure group3),150.846,169.17,175.177,6517,dryer operating condition
+GRP-75,Dryer steam pressure cylinder26,73.642,81.255,88.702,6517,dryer operating condition
+GRP-75,Dryer steam pressure cylinder27,74.933,80.184,88.158,6517,dryer operating condition
+GRP-75,Dryer steam pressure group6,242.102,285.617,337.504,6517,dryer operating condition
+GRP-75,After-Dryer (Dryer steam pressure group7),186.186,226.013,264.235,6517,dryer operating condition
+PPC-GL-80,Dryer steam pressure cylinder1,27.021,37.489,61.43,4846,dryer operating condition
+PPC-GL-80,Dryer steam pressure cylinder3,28.251,33.429,36.46,4846,dryer operating condition
+PPC-GL-80,Dryer steam pressure cylinder5,40.556,44.932,48.771,4846,dryer operating condition
+PPC-GL-80,Dryer steam pressure cylinder6,59.35,63.575,69.767,4846,dryer operating condition
+PPC-GL-80,Dryer steam pressure group2,99.884,108.842,114.9,4846,dryer operating condition
+PPC-GL-80,Pre-Dryer (Dryer steam pressure group3),159.507,173.011,180.82,4846,dryer operating condition
+PPC-GL-80,Dryer steam pressure cylinder26,80.019,88.072,92.573,4846,dryer operating condition
+PPC-GL-80,Dryer steam pressure cylinder27,80.343,89.707,90.968,4846,dryer operating condition
+PPC-GL-80,Dryer steam pressure group6,318.364,370.21,417.186,4846,dryer operating condition
+PPC-GL-80,After-Dryer (Dryer steam pressure group7),273.686,321.7,358.978,4846,dryer operating condition
+OSP-BM-PLUS55,Dryer steam pressure cylinder1,22.583,24.612,40.795,4095,dryer operating condition
+OSP-BM-PLUS55,Dryer steam pressure cylinder3,14.146,23.311,34.188,4095,dryer operating condition
+OSP-BM-PLUS55,Dryer steam pressure cylinder5,38.154,42.243,44.582,4095,dryer operating condition
+OSP-BM-PLUS55,Dryer steam pressure cylinder6,54.876,58.699,62.084,4095,dryer operating condition
+OSP-BM-PLUS55,Dryer steam pressure group2,87.199,95.547,110.32,4095,dryer operating condition
+OSP-BM-PLUS55,Pre-Dryer (Dryer steam pressure group3),140.645,160.578,165.648,4095,dryer operating condition
+OSP-BM-PLUS55,Dryer steam pressure cylinder26,57.696,70.838,82.287,4094,dryer operating condition
+OSP-BM-PLUS55,Dryer steam pressure cylinder27,59.659,68.446,80.101,4095,dryer operating condition
+OSP-BM-PLUS55,Dryer steam pressure group6,114.429,148.548,173.711,4095,dryer operating condition
+OSP-BM-PLUS55,After-Dryer (Dryer steam pressure group7),83.706,111.412,133.761,4095,dryer operating condition
+CPO-HW-50,Dryer steam pressure cylinder1,20.236,27.855,38.807,3797,dryer operating condition
+CPO-HW-50,Dryer steam pressure cylinder3,23.198,31.493,34.774,3797,dryer operating condition
+CPO-HW-50,Dryer steam pressure cylinder5,34.76,43.08,45.77,3797,dryer operating condition
+CPO-HW-50,Dryer steam pressure cylinder6,50.167,59.868,62.224,3797,dryer operating condition
+CPO-HW-50,Dryer steam pressure group2,87.591,99.918,106.749,3797,dryer operating condition
+CPO-HW-50,Pre-Dryer (Dryer steam pressure group3),138.478,155.518,164.84,3797,dryer operating condition
+CPO-HW-50,Dryer steam pressure cylinder26,66.709,76.795,89.578,3797,dryer operating condition
+CPO-HW-50,Dryer steam pressure cylinder27,69.491,79.294,89.918,3797,dryer operating condition
+CPO-HW-50,Dryer steam pressure group6,93.728,123.145,143.753,3797,dryer operating condition
+CPO-HW-50,After-Dryer (Dryer steam pressure group7),82.756,94.901,122.294,3797,dryer operating condition
+OSP-NOTE--50,Dryer steam pressure cylinder1,23.796,27.318,41.643,3025,dryer operating condition
+OSP-NOTE--50,Dryer steam pressure cylinder3,27.629,31.287,34.848,3025,dryer operating condition
+OSP-NOTE--50,Dryer steam pressure cylinder5,38.379,43.262,45.52,3025,dryer operating condition
+OSP-NOTE--50,Dryer steam pressure cylinder6,52.184,58.189,63.089,3025,dryer operating condition
+OSP-NOTE--50,Dryer steam pressure group2,84.912,94.671,109.805,3025,dryer operating condition
+OSP-NOTE--50,Pre-Dryer (Dryer steam pressure group3),134.867,151.435,167.743,3025,dryer operating condition
+OSP-NOTE--50,Dryer steam pressure cylinder26,66.69,75.108,82.862,3025,dryer operating condition
+OSP-NOTE--50,Dryer steam pressure cylinder27,69.731,75.109,80.282,3025,dryer operating condition
+OSP-NOTE--50,Dryer steam pressure group6,86.687,114.35,147.341,3025,dryer operating condition
+OSP-NOTE--50,After-Dryer (Dryer steam pressure group7),78.888,94.496,125.779,3025,dryer operating condition

@@ -1,0 +1,8 @@
+requests
+urllib3
+requests-negotiate-sspi; sys_platform == "win32"
+joblib
+pandas
+numpy
+scipy
+scikit-learn

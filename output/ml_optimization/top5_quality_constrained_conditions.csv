@@ -1,0 +1,41 @@
+grade,parameter,p25,p75,constraint_type,p05,p95
+GRP-75,Production Rate,7.1615,7.3901,held operating condition,,
+GRP-75,Reel Speed,501.4895,511.5458,held operating condition,,
+GRP-75,Basis Weight,73.6142,75.1211,held operating condition,,
+GRP-75,Main Steam Flow,12.2610,13.4269,held operating condition,,
+GRP-75,Jet/Wire Ratio,1.0197,1.0202,held operating condition,,
+GRP-75,Turbo Speed Motor,1285.3228,1337.9526,held operating condition,,
+GRP-75,Dryness Soft Sensor,14.0318,14.8789,predicted quality constraint,12.9537,15.2939
+GRP-75,Moisture Size Press,0.8766,1.2387,predicted quality constraint,0.6408,1.6135
+PPC-GL-80,Production Rate,7.9125,8.0639,held operating condition,,
+PPC-GL-80,Reel Speed,499.7004,502.9441,held operating condition,,
+PPC-GL-80,Basis Weight,81.0156,82.5252,held operating condition,,
+PPC-GL-80,Main Steam Flow,13.7949,14.7454,held operating condition,,
+PPC-GL-80,Jet/Wire Ratio,1.0197,1.0202,held operating condition,,
+PPC-GL-80,Turbo Speed Motor,1282.7195,1311.2189,held operating condition,,
+PPC-GL-80,Dryness Soft Sensor,15.0097,15.4020,predicted quality constraint,14.4268,15.5868
+PPC-GL-80,Moisture Size Press,1.0279,1.6716,predicted quality constraint,0.7876,2.1429
+OSP-BM-PLUS55,Production Rate,5.5251,5.6679,held operating condition,,
+OSP-BM-PLUS55,Reel Speed,512.0184,520.4707,held operating condition,,
+OSP-BM-PLUS55,Basis Weight,54.8481,55.4381,held operating condition,,
+OSP-BM-PLUS55,Main Steam Flow,9.5089,10.2985,held operating condition,,
+OSP-BM-PLUS55,Jet/Wire Ratio,1.0197,1.0202,held operating condition,,
+OSP-BM-PLUS55,Turbo Speed Motor,1416.1464,1421.4739,held operating condition,,
+OSP-BM-PLUS55,Dryness Soft Sensor,12.6561,14.5644,predicted quality constraint,12.3354,14.7623
+OSP-BM-PLUS55,Moisture Size Press,0.3817,0.5356,predicted quality constraint,0.3666,0.6393
+CPO-HW-50,Production Rate,4.9504,5.1114,held operating condition,,
+CPO-HW-50,Reel Speed,501.4840,523.4967,held operating condition,,
+CPO-HW-50,Basis Weight,50.1518,51.5928,held operating condition,,
+CPO-HW-50,Main Steam Flow,8.8502,9.4193,held operating condition,,
+CPO-HW-50,Jet/Wire Ratio,1.0197,1.0202,held operating condition,,
+CPO-HW-50,Turbo Speed Motor,1356.9798,1406.2021,held operating condition,,
+CPO-HW-50,Dryness Soft Sensor,13.8878,14.5452,predicted quality constraint,12.8660,14.7723
+CPO-HW-50,Moisture Size Press,0.4160,0.4533,predicted quality constraint,0.2013,0.4855
+OSP-NOTE--50,Production Rate,4.8183,4.9828,held operating condition,,
+OSP-NOTE--50,Reel Speed,501.2574,511.4243,held operating condition,,
+OSP-NOTE--50,Basis Weight,50.4189,51.5913,held operating condition,,
+OSP-NOTE--50,Main Steam Flow,8.8411,9.3594,held operating condition,,
+OSP-NOTE--50,Jet/Wire Ratio,1.0197,1.0202,held operating condition,,
+OSP-NOTE--50,Turbo Speed Motor,1364.1621,1393.4220,held operating condition,,
+OSP-NOTE--50,Dryness Soft Sensor,13.2870,14.3946,predicted quality constraint,10.7262,14.6077
+OSP-NOTE--50,Moisture Size Press,0.4085,0.4836,predicted quality constraint,0.1773,0.5315
