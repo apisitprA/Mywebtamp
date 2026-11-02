@@ -121,6 +121,8 @@
     .top-tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.top-tabs::-webkit-scrollbar{display:none}.top-tab{flex:0 0 auto}
     @media(max-width:780px){.snapshot-toolbar{width:100%;margin-left:0}.info-value{font-size:20px}}
   </style>
+<link rel="stylesheet" href="dashboard-modern.css?v=20261102-2">
+<link rel="stylesheet" href="paper-machine.css?v=20261102-3">
 </head>
 <body>
   <div class="shell">
@@ -210,7 +212,7 @@
     function updateInfographicValues(){const value=tag=>state.values[tag]?.Value,rate=Number(value('TPC3-CAL_PRODUCT.CPV')),load=Number(value('TPC3-KWC2723OVL.PV')),steam=Number(value('TPC3-FI2409.PV')),speed=Number(value('TPC3-SI2101.PV')),specific=rate>0&&Number.isFinite(load)?load/rate:NaN,steamTon=rate>0&&Number.isFinite(steam)?steam/rate:NaN;$('infoRate').textContent=`${format(rate)} t/h`;$('infoGrade').textContent=format(value('TPC3-GRADE'));$('infoLoad').textContent=`${format(load)} kW`;$('infoSec').textContent=Number.isFinite(specific)?`${format(specific)} kWh/t`:'— kWh/t';$('infoVacuum').textContent=`${format(value('TPC3-KWC2723_SP.PV'))} kPa`;$('infoSpeed').textContent=`${format(value('TPC3-SI2934.PV'))} rpm`;$('infoDryness').textContent=`${format(value('TPC3-DRYNESS.PV'))} %`;$('infoBasis').textContent=`${format(value('TPC3-BW1.PV'))} gsm`;$('qualityGrade').textContent=format(value('TPC3-GRADE'));$('qualityBasis').textContent=`${format(value('TPC3-BW1.PV'))} gsm`;$('qualityMoisture').textContent=`${format(value('TPC3-MP0.PV'))} %`;$('qualityDryness').textContent=`${format(value('TPC3-DRYNESS.PV'))} %`;$('qualityRate').textContent=`${format(rate)} t/h`;$('qualitySteamTon').textContent=Number.isFinite(steamTon)?`${format(steamTon)} t/t`:'— t/t';$('qualityKwhTon').textContent=Number.isFinite(specific)?`${format(specific)} kWh/t`:'— kWh/t';$('qualitySpeed').textContent=`${format(speed)} m/min`;$('qualitySpeedBar').style.width=Number.isFinite(speed)?`${Math.max(0,Math.min(100,speed/550*100))}%`:'0%';updateInfographicMode()}
     function initPredictionVisibility(){const card=document.querySelector('.prediction-card'),name=$('modelName');if(!card||!name)return;const sync=()=>{card.hidden=name.textContent.trim()==='Model unavailable'};new MutationObserver(sync).observe(name,{childList:true,characterData:true,subtree:true});sync()}
     function initInfographicOverview(){const overview=$('tab-overview'),strip=$('infographicStrip'),quality=$('qualityPeriodCard'),heading=$('processSectionHeading'),snapshot=$('snapshotToolbar'),process=document.querySelector('.process-wrap');if(!overview||!strip||!quality||!heading)return;overview.insertBefore(strip,snapshot||overview.firstChild);overview.insertBefore(quality,snapshot);overview.insertBefore(heading,process);const baseUpdate=updateHighlights;updateHighlights=function(){baseUpdate();updateInfographicValues();setTimeout(updateInfographicMode,0)};new MutationObserver(updateInfographicMode).observe(document.querySelector('.subtitle'),{attributes:true,attributeFilter:['class']})}
-    addProcessDetails();initProcessSummaryTable();addSpecificEnergyCard();addPpcComparisonCard();addHistoricalComparisonCards();initDashboardTabs();initPredictionVisibility();initInfographicOverview();initSnapshotPicker();document.addEventListener('keydown',event=>{if(event.key==='Escape')closeChartPopup()});document.querySelector('.process-caption').textContent='LIVE PI VALUES · SP = Setpoint · ACT = Actual · V = Valve · Yellow = AI recommended SP';updateAdditionalProcessDetails();setInterval(updateAdditionalProcessDetails,1000);if(localStorage.getItem('sidebarCollapsed')!=='0')document.querySelector('.shell').classList.add('sidebar-collapsed');restoreProcessLayout();initProcessDragging();updateRefreshInfo();renderRows();enableTrendTooltip(); if(location.protocol !=='file:'){loadPiData();loadLoadHistory();loadProcessRecommendations();setTimeout(loadHistoricalComparison,1200);setInterval(loadLoadHistory,300000);setInterval(loadProcessRecommendations,30000)}
+    addProcessDetails();initProcessSummaryTable();addSpecificEnergyCard();addPpcComparisonCard();addHistoricalComparisonCards();initDashboardTabs();initPredictionVisibility();initInfographicOverview();initSnapshotPicker();document.addEventListener('keydown',event=>{if(event.key==='Escape')closeChartPopup()});document.querySelector('.process-caption').textContent='LIVE PI VALUES · SP = Setpoint · ACT = Actual · V = Valve · Yellow = AI recommended SP';updateAdditionalProcessDetails();setInterval(updateAdditionalProcessDetails,1000);if(localStorage.getItem('sidebarCollapsed')!=='0')document.querySelector('.shell').classList.add('sidebar-collapsed');restoreProcessLayout();initProcessDragging();updateRefreshInfo();renderRows();enableTrendTooltip(); if(location.protocol !=='file:'){loadPiData();loadLoadHistory();loadProcessRecommendations();setInterval(loadLoadHistory,300000);setInterval(loadProcessRecommendations,30000)}
     // If the local PI proxy is still warming up when the page opens, keep
     // retrying until the first dataset arrives. Successful loads switch to the
     // refresh interval configured in Dashboard settings.
@@ -225,6 +227,8 @@
     // Public bridge for optional dashboard modules loaded from separate files.
     window.tpcDashboard={state,format,showTab:showDashboardTab};
   </script>
-  <script src="turbo-performance.js?v=20261001-2"></script>
+  <script src="turbo-performance.js?v=20261102-3"></script>
+<script src="dashboard-modern.js?v=20261102-2"></script>
+<script src="paper-machine.js?v=20261102-3"></script>
 </body>
 </html>

@@ -106,5 +106,6 @@ if (typeof document !== 'undefined') (() => {
   }
   ['perfTariff','perfTolerance','perfValve','perfAirFlow'].forEach(id=>document.getElementById(id).addEventListener('input',()=>{if(id==='perfAirFlow')localStorage.setItem('turboAirFlowM3s',document.getElementById(id).value);render()}));
   document.getElementById('perfAirFlowInline').addEventListener('input',event=>{document.getElementById('perfAirFlow').value=event.target.value;localStorage.setItem('turboAirFlowM3s',event.target.value);render()});
+  dashboard.renderPerformance=render;
   render();if(localStorage.getItem('dashboardTab')==='performance')showTab('performance');setInterval(()=>{if(panel.classList.contains('active'))render();},1000);
 })();
