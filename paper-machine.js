@@ -28,6 +28,7 @@
   const flow=document.createElementNS(NS,'g');flow.classList.add('vacuum-motion');
   flow.innerHTML=[100,300,500,700,900,1100,1300].map(x=>`<path d="M${x} 130V370"/>`).join('')+'<path d="M100 370H510V443 M1300 370H510 M710 484H930"/>';
   lower.append(flow);
+  lower.querySelectorAll(".valve-gauge").forEach(g=>lower.append(g));
   const roller=(x,y,r=19)=>`<g transform="translate(${x} ${y})"><circle r="${r}" fill="#fff" stroke="#92adbd" stroke-width="2"/><g class="paper-roller"><path d="M-${r-4} 0H${r-4}M0 -${r-4}V${r-4}" stroke="#c0d2dd" stroke-width="2"/><circle r="4" fill="#62889f"/></g></g>`;
   const felt=(x)=>`<path d="M${x-48} 171L${x-30} 86H${x+32}L${x+48} 171Z" class="felt-track"/>${roller(x-30,86,8)}${roller(x+32,86,8)}${roller(x-48,171,8)}${roller(x+48,171,8)}`;
   const paper=document.createElementNS(NS,'g');paper.classList.add('paper-machine');
@@ -70,13 +71,33 @@
     const stamp=Math.max(...['TPC3-SI2934.PV','TPC3-KWC2723OVL.PV'].map(tag=>Date.parse(state.values[tag]?.Timestamp||'')).filter(Number.isFinite));
     const fresh=Number.isFinite(stamp)&&Math.abs(Date.now()-stamp)<120000;
     const live=!state.historyMode&&!cached&&fresh;
-    const run=item?.Good!==false&&[1,'1','RUN',true].includes(status);
+    const run=item?.Good!==false&&!item?.Cached&&[1,'1','RUN',true].includes(typeof status==='string'?status.trim().toUpperCase():status);
     const speed=state.values['TPC3-SI2934.PV'];const turbo=speed?.Good!==false&&typeof speed?.Value==='number'&&speed.Value>0;
-    panel.dataset.paperRunning=String(live&&run&&!paused);panel.dataset.turboRunning=String(live&&turbo&&!paused);
-    motionNote.textContent=paused?'ภาพเคลื่อนไหวพักอยู่':!live?'หยุดภาพ: ข้อมูลย้อนหลัง / สำรอง / ไม่สด':'ภาพเคลื่อนไหวแสดงทิศทาง · ไม่แทนความเร็วหรืออัตราการไหลจริง';
+    panel.dataset.paperRunning=String(live&&run&&!paused);panel.dataset.turboRunning=String(live&&run&&turbo&&!paused);
+    motionNote.textContent=paused?'ภาพเคลื่อนไหวพักอยู่':!live?'หยุดภาพ: ข้อมูลย้อนหลัง / สำรอง / ไม่สด':!run?'BREAK / STOP · หยุดภาพเคลื่อนไหว':'RUN · ภาพเคลื่อนไหวแสดงทิศทางการทำงาน';
   }
   const priorUpdate=updateHighlights;updateHighlights=function(...a){const r=priorUpdate(...a);syncMotion();return r;};
-  setInterval(syncMotion,2000);syncMotion();
+  setInterval(syncMotion,1000);syncMotion();
+  const wrap=panel.closest('.process-wrap');
+  const fullscreen=document.createElement('button');fullscreen.type='button';fullscreen.className='fullscreen-control';
+  fullscreen.textContent='⛶ เต็มหน้าจอ';fullscreen.setAttribute('aria-label','ขยายระบบสุญญากาศ PM3 เต็มหน้าจอ');fullscreen.setAttribute('aria-pressed','false');
+  document.querySelector('.diagram-top').append(fullscreen);
+  function fitDiagram(){
+    const active=document.fullscreenElement===wrap||wrap.classList.contains('diagram-expanded');
+    fullscreen.textContent=active?'⛶ ออกจากเต็มหน้าจอ':'⛶ เต็มหน้าจอ';fullscreen.setAttribute('aria-pressed',String(active));
+    if(active){const area=wrap.querySelector('.diagram-scroll');const width=Math.min(area.clientWidth,area.clientHeight*1400/780);panel.style.setProperty('--diagram-scale',String(width/1400));}
+    else panel.style.removeProperty('--diagram-scale');
+  }
+  function closeFallback(){wrap.classList.remove('diagram-expanded');document.body.classList.remove('diagram-fullscreen-open');fitDiagram();}
+  fullscreen.onclick=async()=>{
+    if(document.fullscreenElement===wrap){await document.exitFullscreen();return;}
+    if(wrap.classList.contains('diagram-expanded')){closeFallback();return;}
+    try{if(!wrap.requestFullscreen)throw Error('Fullscreen unavailable');await wrap.requestFullscreen();}
+    catch{wrap.classList.add('diagram-expanded');document.body.classList.add('diagram-fullscreen-open');}
+    fitDiagram();
+  };
+  document.addEventListener('fullscreenchange',fitDiagram);window.addEventListener('resize',fitDiagram);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFallback();});
   // Rebuild explicit buttons: earlier Performance code created a panel, but no button.
   const nav=document.querySelector('.top-tabs');nav.replaceChildren();
   const tabs=[['overview','ภาพรวมระบบ'],['optimization','แนะนำ Setpoint'],['charts','แนวโน้มการทำงาน'],['monitor','ข้อมูล PI Tags'],['performance','Turbo Performance']];

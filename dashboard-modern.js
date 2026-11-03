@@ -25,14 +25,14 @@
     ['2719','1st Press Felt','PRESS 01'],['2718','2nd Press Felt','PRESS 02'],['2720','3rd Press Felt','PRESS 03']
   ];
   const centers=branches.map((_,i)=>100+i*200);
-  const valve=x=>`<g stroke="#508eaa" stroke-width="1.6" fill="#f4f9fb"><path d="M${x-9} 307L${x+9} 323L${x-9} 339Z M${x+9} 307L${x-9} 323L${x+9} 339Z"/><path d="M${x+10} 323h12v-13" fill="none"/><rect x="${x+15}" y="300" width="14" height="11" rx="3"/></g>`;
+  const valve=(x,id)=>`<g class="valve-gauge" data-valve="${id}" role="meter" aria-label="Valve ${id} opening" aria-valuemin="0" aria-valuemax="100"><rect x="${x-72}" y="300" width="144" height="51" rx="9" fill="#fff" stroke="#d4e5ea"/><text x="${x-60}" y="315" class="valve-label">VALVE OPEN</text><text x="${x+60}" y="315" text-anchor="end" class="valve-percent">—</text><rect x="${x-60}" y="323" width="120" height="7" rx="3.5" fill="#e6eff2"/><rect class="valve-fill" x="${x-60}" y="323" width="0" height="7" rx="3.5" fill="#189e94"/><text x="${x-60}" y="343" class="valve-scale">0%</text><text x="${x+60}" y="343" text-anchor="end" class="valve-scale">100%</text></g>`;
   const equipment=(x,i)=>i===0?`<rect class="equip" x="${x-47}" y="58" width="94" height="30" rx="5"/>${[0,1,2,3,4,5,6].map(k=>`<path d="M${x-35+k*12} 64v18" stroke="#9ab5c5"/>`).join('')}<path class="pipe" d="M${x} 88v42"/>`:
     `<path d="M${x-45} 91L${x-25} 55H${x+25}L${x+45} 91Z" fill="none" stroke="#c1ced6" stroke-width="4"/>${[[-25,55],[25,55],[45,91],[-45,91]].map(([dx,y])=>`<circle cx="${x+dx}" cy="${y}" r="9" fill="#fff" stroke="#91a9b8" stroke-width="2"/>`).join('')}<rect class="equip" x="${x-20}" y="86" width="40" height="13" rx="4"/><path class="pipe" d="M${x} 100v30"/>`;
   const svg=`<svg class="vacuum-schematic" viewBox="0 0 1400 620" role="img" aria-label="แผนผังจุดดูด 7 จุด เชื่อมผ่านท่อร่วมไปถังแยกน้ำและ Turbo Vacuum พร้อมท่อน้ำซีลและปั๊มเสริม">
   <defs><marker id="flowArrow" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0 0L5 3L0 6" fill="none" stroke="#508eaa" stroke-width="1.3"/></marker><pattern id="draftGrid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".6" fill="#e7eef2"/></pattern></defs>
   <rect width="1400" height="620" fill="url(#draftGrid)"/>
   <path d="M30 43H1370" stroke="#dbe6ed" stroke-width="2" stroke-dasharray="5 5"/>
-  ${centers.map((x,i)=>`<text x="${x}" y="27" text-anchor="middle" class="fine">${branches[i][2]}</text>${equipment(x,i)}<path class="pipe" d="M${x} 130V370"/>${valve(x)}<path d="M${x} 343v16" class="pipe" marker-end="url(#flowArrow)"/><circle class="junction" cx="${x}" cy="370" r="5"/>`).join('')}
+  ${centers.map((x,i)=>`<text x="${x}" y="27" text-anchor="middle" class="fine">${branches[i][2]}</text>${equipment(x,i)}<path class="pipe" d="M${x} 130V370"/>${valve(x,branches[i][0])}<path d="M${x} 343v16" class="pipe" marker-end="url(#flowArrow)"/><circle class="junction" cx="${x}" cy="370" r="5"/>`).join('')}
   <path class="pipe" d="M100 370H1300 M510 370V440"/>
   <text x="1020" y="394" class="fine">VACUUM COLLECTION HEADER · ท่อร่วมสุญญากาศ</text>
   <path class="pipe" d="M510 400v25" marker-end="url(#flowArrow)"/>
@@ -68,11 +68,23 @@
   const hidden=document.createElement('div');hidden.hidden=true;['procRun','procVacuum','procDryness'].forEach(id=>{if(store[id])hidden.append(store[id])});technical.append(hidden);details.after(technical);
   function updateBranches(){
     const v=tag=>state.values[tag]?.Value;
-    branches.forEach(([id])=>{get('proc'+id).innerHTML=`<div class="reading-line actual"><span>ACT</span><strong>${format(v(`TPC3-PIC${id}.PV`))}<small>kPa</small></strong></div><div class="reading-line"><span>SP</span><strong>${format(v(`TPC3-PIC${id}.SV`))}<small>kPa</small></strong></div><div class="reading-line"><span>VALVE</span><strong>${format(v(`TPC3-PIC${id}.MV`))}<small>%</small></strong></div>`;});
+    branches.forEach(([id])=>{get('proc'+id).innerHTML=`<div class="reading-line actual"><span>ACT</span><strong>${format(v(`TPC3-PIC${id}.PV`))}<small>kPa</small></strong></div><div class="reading-line"><span>SP</span><strong>${format(v(`TPC3-PIC${id}.SV`))}<small>kPa</small></strong></div>`;});
+  }
+  function updateValveLevels(){
+    branches.forEach(([id,name])=>{
+      const gauge=panel.querySelector(`[data-valve="${id}"]`), item=state.values[`TPC3-PIC${id}.MV`];
+      const valid=item?.Good!==false&&typeof item?.Value==='number'&&Number.isFinite(item.Value)&&item.Value>=0&&item.Value<=100;
+      gauge.querySelector('.valve-fill').setAttribute('width',valid?item.Value*1.2:0);
+      gauge.querySelector('.valve-percent').textContent=valid?format(item.Value)+'%':'—';
+      gauge.setAttribute('aria-label',name+' · ระดับการเปิดวาล์ว');
+      gauge.setAttribute('aria-valuetext',valid?format(item.Value)+'%':'ไม่มีข้อมูลที่ใช้ได้');
+      if(valid)gauge.setAttribute('aria-valuenow',item.Value);else gauge.removeAttribute('aria-valuenow');
+      gauge.classList.toggle('unavailable',!valid);
+    });
   }
   for(const name of ['updateHighlights','updateProcessValues']){
-    const original=window[name];window[name]=function(...args){const result=original(...args);updateBranches();return result;};
+    const original=window[name];window[name]=function(...args){const result=original(...args);updateBranches();updateValveLevels();return result;};
   }
   document.querySelectorAll('[data-mirror]').forEach(el=>{const source=get(el.dataset.mirror);if(!source)return;const sync=()=>el.textContent=source.textContent;new MutationObserver(sync).observe(source,{childList:true,subtree:true,characterData:true});sync();});
-  updateBranches();
+  updateBranches();updateValveLevels();
 })();
