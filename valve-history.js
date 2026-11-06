@@ -13,6 +13,10 @@
   let payload=null,busy=false,loaded=false;const hidden=new Set();
   const inputTime=t=>{const d=new Date(t),pad=x=>String(x).padStart(2,'0');return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;};
   const dateLabel=t=>new Date(t).toLocaleString('th-TH-u-ca-gregory',{year:'numeric',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
+  const zoom=window.TPCChartZoom?.(card,async range=>{
+    $('#valveFrom').value=inputTime(range[0]);$('#valveTo').value=inputTime(range[1]);
+    $('#valvePeriod').value='custom';return load(true);
+  });
   function preset(){if($('#valvePeriod').value==='custom')return;const end=Date.now();$('#valveTo').value=inputTime(end);$('#valveFrom').value=inputTime(end-Number($('#valvePeriod').value)*3600000);}
   preset();$('#valveTo').max=inputTime(Date.now());$('#valveFrom').max=inputTime(Date.now());
   $('#valvePeriod').onchange=preset;
@@ -48,20 +52,20 @@
       check.onchange=()=>{check.checked?hidden.delete(s.tag):hidden.add(s.tag);draw();tooltip.hidden=true;};
     });
   }
-  async function load(){
+  async function load(preserveZoom=false){
     if(busy)return;
     const from=new Date($('#valveFrom').value),to=new Date($('#valveTo').value);
     if(!Number.isFinite(+from)||!Number.isFinite(+to)||from>=to||to>Date.now()+60000||to-from>732*86400000){status.textContent='กรุณาเลือกวัน–เวลาให้ถูกต้อง ช่วงไม่เกิน 2 ปี และไม่เกินเวลาปัจจุบัน';return;}
-    busy=true;card.querySelectorAll('form input,form select').forEach(el=>el.disabled=true);$('#valveLoad').disabled=true;$('#valveNow').disabled=true;status.textContent='กำลังอ่านประวัติ PI ของวาล์วทั้ง 8 จุด…';tooltip.hidden=true;
+    busy=true;zoom?.setBusy(true);card.querySelectorAll('form input,form select').forEach(el=>el.disabled=true);$('#valveLoad').disabled=true;$('#valveNow').disabled=true;status.textContent='กำลังอ่านประวัติ PI ของวาล์วทั้ง 8 จุด…';tooltip.hidden=true;
     try{
       const response=await fetch('/api/valve-history?'+new URLSearchParams({start:from.toISOString(),end:to.toISOString()}));
       if(!(response.headers.get('content-type')||'').includes('application/json'))throw Error('กรุณาเปิด Dashboard Server รุ่นล่าสุดใหม่เพื่อใช้งานกราฟย้อนหลัง');
       const data=await response.json();if(!response.ok)throw Error(data.error||'อ่านประวัติ PI ไม่สำเร็จ');
-      payload=data;loaded=true;renderLegend();draw();
+      payload=data;loaded=true;zoom?.accept([Date.parse(data.start),Date.parse(data.end)],preserveZoom);renderLegend();draw();
       const ok=data.series.filter(s=>s.points.some(p=>p.value!==null)).length;
-      status.textContent=`${dateLabel(data.start)} – ${dateLabel(data.end)} · ข้อมูล ${ok}/8 จุด · ความละเอียด ${data.interval_seconds<3600?data.interval_seconds/60+' นาที':data.interval_seconds/3600+' ชั่วโมง'} · PI Archive`;
+      status.textContent=`${dateLabel(data.start)} – ${dateLabel(data.end)} · ข้อมูล ${ok}/8 จุด · ความละเอียด ${data.interval_seconds<3600?data.interval_seconds/60+' นาที':data.interval_seconds/3600+' ชั่วโมง'} · PI Archive`;return true;
     }catch(error){payload=null;legend.replaceChildren();draw();status.textContent=error.message;loaded=false;}
-    finally{busy=false;card.querySelectorAll('form input,form select').forEach(el=>el.disabled=false);$('#valveLoad').disabled=false;$('#valveNow').disabled=false;}
+    finally{busy=false;zoom?.setBusy(false);card.querySelectorAll('form input,form select').forEach(el=>el.disabled=false);$('#valveLoad').disabled=false;$('#valveNow').disabled=false;}
   }
   svg.addEventListener('pointermove',e=>{
     if(!payload)return;const rect=svg.getBoundingClientRect(),px=(e.clientX-rect.left)/rect.width*1100;
@@ -79,6 +83,7 @@
     tooltip.hidden=false;tooltip.style.left=Math.max(8,Math.min(e.clientX-rect.left+15,rect.width-tooltip.offsetWidth-8))+'px';tooltip.style.top='12px';
   });
   svg.addEventListener('pointerleave',()=>{tooltip.hidden=true;svg.querySelector('#valveCursor')?.setAttribute('visibility','hidden');});
+  zoom?.attach(svg,{left:60,right:1070,top:22,bottom:325});
   new MutationObserver(()=>{if(!host.hidden&&host.classList.contains('active')&&!loaded)load();}).observe(host,{attributes:true,attributeFilter:['hidden','class']});
   draw();if(!host.hidden&&host.classList.contains('active'))load();
 })();

@@ -16,6 +16,10 @@
   const format=n=>typeof n==='number'&&Number.isFinite(n)?n.toLocaleString('en-US',{maximumFractionDigits:2}):'—';
   const date=t=>new Date(t).toLocaleString('th-TH-u-ca-gregory',{year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false});
   const inputTime=t=>{const d=new Date(t),pad=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;};
+  const zoom=window.TPCChartZoom?.(card,async range=>{
+    $('#monitorFrom').value=inputTime(range[0]);$('#monitorTo').value=inputTime(range[1]);
+    $('#monitorPeriod').value='custom';$('#monitorFollow').checked=false;return load(true);
+  });
   function preset(){const hours=Number($('#monitorPeriod').value);if(!hours)return;const end=Date.now();$('#monitorTo').value=inputTime(end);$('#monitorFrom').value=inputTime(end-hours*3600000);}
   preset();$('#monitorPeriod').onchange=()=>{preset();$('#monitorFollow').checked=false;};
   ['#monitorFrom','#monitorTo'].forEach(sel=>$(sel).onchange=()=>{$('#monitorPeriod').value='custom';$('#monitorFollow').checked=false;});
@@ -64,21 +68,21 @@
         for(const s of entries){const row=document.createElement('div');row.style.setProperty('--series-color',colors[data.series.indexOf(s)%colors.length]);const v=closest(s,t);row.textContent=s.label+': '+(s.kind==='status'?(v===1?'RUN':v===0?'BREAK':'—'):format(v)+' '+s.unit);tip.append(row);}
         tip.hidden=false;tip.style.left=Math.max(8,Math.min(e.clientX-rect.left+12,rect.width-tip.offsetWidth-8))+'px';tip.style.top='10px';
       });
-      svg.addEventListener('pointerleave',()=>{tip.hidden=true;card.querySelectorAll('.monitor-cursor').forEach(line=>line.setAttribute('visibility','hidden'));});plots.append(section);
+      svg.addEventListener('pointerleave',()=>{tip.hidden=true;card.querySelectorAll('.monitor-cursor').forEach(line=>line.setAttribute('visibility','hidden'));});zoom?.attach(svg,{left:65,right:1070,top:20,bottom});plots.append(section);
     }
     for(const s of data.series.filter(s=>!s.kind)){const values=s.points.map(p=>p.value).filter(v=>typeof v==='number'),last=s.points.at(-1)?.value;const tr=document.createElement('tr');
       const cells=[s.label,s.unit,format(last),values.length?format(Math.min(...values)):'—',values.length?format(Math.max(...values)):'—',values.length?format(values.reduce((a,b)=>a+b,0)/values.length):'—',values.length+'/'+s.points.length];
       cells.forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.append(td);});tbody.append(tr);
     }
   }
-  async function load(){
+  async function load(preserveZoom=false){
     if(busy)return;const from=new Date($('#monitorFrom').value),to=new Date($('#monitorTo').value);
     if(!Number.isFinite(+from)||!Number.isFinite(+to)||from>=to||to>Date.now()+60000||to-from>732*86400000){status.textContent='กรุณาเลือกช่วงเวลาที่ถูกต้อง ไม่เกิน 2 ปี และไม่เกินเวลาปัจจุบัน';return;}
-    busy=true;card.querySelectorAll('form input,form select,form button').forEach(el=>el.disabled=true);$('.monitor-export').disabled=true;status.textContent='กำลังอ่านข้อมูล PI Archive…';
-    try{const response=await fetch('/api/monitor-history?'+new URLSearchParams({group:$('#monitorGroup').value,start:from.toISOString(),end:to.toISOString()}));if(!(response.headers.get('content-type')||'').includes('application/json'))throw Error('กรุณาเปิด Dashboard Server รุ่นล่าสุดใหม่');const result=await response.json();if(!response.ok)throw Error(result.error||'อ่านข้อมูล PI ไม่สำเร็จ');data=result;loaded=true;render();
-      const n=data.series.filter(s=>s.points.some(p=>p.value!==null)).length;status.textContent=`${date(data.start)} – ${date(data.end)} · มีข้อมูล ${n}/${data.series.length} สัญญาณ · ความละเอียด ${data.interval_seconds<3600?data.interval_seconds/60+' นาที':data.interval_seconds/3600+' ชั่วโมง'} · ${$('#monitorFollow').checked?'ติดตามล่าสุด':'ประวัติที่เลือก'}`;$('.monitor-context').textContent='ชี้กราฟเพื่อดูเกรด สถานะ และค่าที่เวลาเดียวกัน';$('.monitor-export').disabled=false;
+    busy=true;zoom?.setBusy(true);card.querySelectorAll('form input,form select,form button').forEach(el=>el.disabled=true);$('.monitor-export').disabled=true;status.textContent='กำลังอ่านข้อมูล PI Archive…';
+    try{const response=await fetch('/api/monitor-history?'+new URLSearchParams({group:$('#monitorGroup').value,start:from.toISOString(),end:to.toISOString()}));if(!(response.headers.get('content-type')||'').includes('application/json'))throw Error('กรุณาเปิด Dashboard Server รุ่นล่าสุดใหม่');const result=await response.json();if(!response.ok)throw Error(result.error||'อ่านข้อมูล PI ไม่สำเร็จ');data=result;loaded=true;zoom?.accept([Date.parse(data.start),Date.parse(data.end)],preserveZoom);render();
+      const n=data.series.filter(s=>s.points.some(p=>p.value!==null)).length;status.textContent=`${date(data.start)} – ${date(data.end)} · มีข้อมูล ${n}/${data.series.length} สัญญาณ · ความละเอียด ${data.interval_seconds<3600?data.interval_seconds/60+' นาที':data.interval_seconds/3600+' ชั่วโมง'} · ${$('#monitorFollow').checked?'ติดตามล่าสุด':'ประวัติที่เลือก'}`;$('.monitor-context').textContent='ชี้กราฟเพื่อดูเกรด สถานะ และค่าที่เวลาเดียวกัน';$('.monitor-export').disabled=false;return true;
     }catch(error){data=null;loaded=false;plots.replaceChildren();$('tbody').replaceChildren();status.textContent=error.message;}
-    finally{busy=false;card.querySelectorAll('form input,form select,form button').forEach(el=>el.disabled=false);}
+    finally{busy=false;zoom?.setBusy(false);card.querySelectorAll('form input,form select,form button').forEach(el=>el.disabled=false);}
   }
   $('.monitor-export').onclick=()=>{
     if(!data)return;const byTime=new Map();data.series.forEach((s,i)=>s.points.forEach(p=>{if(!byTime.has(p.time))byTime.set(p.time,Array(data.series.length).fill(''));byTime.get(p.time)[i]=p.value??'';}));

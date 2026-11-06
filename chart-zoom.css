@@ -1,0 +1,9 @@
+.chart-zoom-tools{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0 12px;font-size:12px;color:#456779}
+.chart-zoom-tools>span:first-child{margin-right:auto}
+.chart-zoom-tools button{border:1px solid #b9d4dd;border-radius:7px;background:#f1f8fa;color:#175e70;padding:7px 12px;font:inherit;cursor:pointer}
+.chart-zoom-tools button:hover:not(:disabled){background:#deeff1;border-color:#25958f}
+.chart-zoom-tools button:disabled{opacity:.45;cursor:default}
+.chart-zoom-notice:empty{display:none}.chart-zoom-notice{flex-basis:100%;color:#137b72}
+.valve-history-card svg.chart-zoom-surface{cursor:crosshair;touch-action:pan-y;user-select:none}
+.chart-zoom-selection{fill:#54dbce33;stroke:#7aede1;stroke-width:1.5;pointer-events:none;vector-effect:non-scaling-stroke}
+@media(max-width:700px){.chart-zoom-tools>span:first-child{flex-basis:100%}}
