@@ -768,6 +768,11 @@ class DashboardHandler(SimpleHTTPRequestHandler):
             self.send_json({"mode": "historical", "requested_time": at_time,
                             "values": values, "errors": errors, "count": len(values)}, status)
             return
+        if path.path == "/api/valve-history":
+            from valve_history import read_valve_history
+            payload, status = read_valve_history(parse_qs(path.query), get_history_range)
+            self.send_json(payload, status)
+            return
         if path.path == "/api/history":
             query = parse_qs(path.query)
             tag = query.get("tag", [""])[0]
